@@ -15,11 +15,12 @@ jobs:
     - name: Perform ShiftLeft Scan
       run: |
         sh <(curl https://slscan.sh/install)
-        scan -t credscan,php,depscan
+        scan -t credscan,php,depscan --no-error
       env:
         WORKSPACE: ""
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SCAN_AUTO_BUILD: true
+        SCAN_DEBUG_MODE: debug
     - uses: actions/upload-artifact@v1
       with:
        name: shiftleft-scan-reports
