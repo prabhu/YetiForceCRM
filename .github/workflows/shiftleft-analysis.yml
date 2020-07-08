@@ -13,7 +13,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Perform ShiftLeft Scan
-      run: sh <(curl https://slscan.sh/run)
+      run: |
+        sh <(curl https://slscan.sh/install)
+        scan -t credscan,php,depscan
       env:
         WORKSPACE: ""
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
